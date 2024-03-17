@@ -1,0 +1,84 @@
+﻿<Window x:Class="Assessment_LoginSystem.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Assessment_LoginSystem"
+        xmlns:viewModel="clr-namespace:Assessment_LoginSystem.MVVM.ViewModel"
+        xmlns:view="clr-namespace:Assessment_LoginSystem.MVVM.View"
+        mc:Ignorable="d"
+        Height="600" Width="920"
+        WindowStyle="SingleBorderWindow"
+        ResizeMode="NoResize"
+        Background="#272537">
+
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock 
+            Grid.Column="0" Grid.Row="0"
+            Text="LogInner TM"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Left"
+            Foreground="White"
+            FontSize="22"
+            Margin="20,0,0,0"/>
+
+        <StackPanel 
+            Grid.Column="0" Grid.Row="1"
+            Margin="10,0,10,10">
+            <RadioButton 
+                Content="Home"
+                Height="50"
+                Foreground="White"
+                FontSize="14"
+                Style="{StaticResource MenuButtonTheme}"
+                IsChecked="True"
+                Command="{Binding HomeViewCommand}"/>
+
+            <RadioButton 
+                Content="View User List"
+                Height="50"
+                Foreground="White"
+                FontSize="14"
+                Style="{StaticResource MenuButtonTheme}"
+                Command="{Binding UserListCommand}"/>
+
+            <RadioButton 
+                Content="Logout"
+                Height="50"
+                Foreground="White"
+                FontSize="14"
+                Style="{StaticResource MenuButtonTheme}"
+                Name="LogoutButton"
+                Click="LogoutButton_Click"/>
+
+            <RadioButton 
+                Content="Exit"
+                Height="50"
+                Foreground="White"
+                FontSize="14"
+                Background="Red"
+                Style="{StaticResource MenuButtonTheme}"
+                Name="CloseButton"
+                Click="CloseButton_Click"/>
+        </StackPanel>
+
+        <ContentControl
+            Grid.Column="1"
+            Grid.Row="1"
+            Margin="10,0,10,10"
+            Content="{Binding CurrentView}"/>
+    </Grid>
+</Window>
