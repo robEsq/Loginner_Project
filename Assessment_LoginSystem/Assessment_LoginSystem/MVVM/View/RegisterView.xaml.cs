@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Assessment_LoginSystem.MVVM.Model;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,26 +27,47 @@ namespace Assessment_LoginSystem.MVVM.View {
         private void GeneratePassword_Checked(object sender, RoutedEventArgs e) {
             // auto generate logic. send to VM
             registerPassword.IsEnabled = false;
-            registerPassword.Text = "AUTO GENERATED";
+            registerPassword.Password = "";
+            registerPassword.Visibility = Visibility.Collapsed;
+            autoGeneratePasswordDisplay.Visibility = Visibility.Visible;
+        }
+
+        private void GeneratePassword_Unchecked(object sender, RoutedEventArgs e) {
+            registerPassword.IsEnabled = true;
+            registerPassword.Visibility = Visibility.Visible;
+            autoGeneratePasswordDisplay.Visibility = Visibility.Hidden;
         }
 
         private void Register_Click(object sender, RoutedEventArgs e) {
-            // Add Register funtionality here
+            string un = registerUsername.Text;
+            string pw = registerPassword.Password;
+            Debug.WriteLine(un);
+            Debug.WriteLine(pw);
 
-            string exitText = "Registration successful, please login with new credentials";
-            string caption = "Success!";
-            MessageBoxButton button = MessageBoxButton.OK;
+            Debug.WriteLine(UserAccountManager.UserExists(un));
 
-            // Alert to show success
-            if (MessageBox.Show(exitText, caption, button, MessageBoxImage.Question)
-                == MessageBoxResult.Yes) {
-                //Close();
-            }
-            var authWindow = new AuthorisationWindow();
-            authWindow.Show();
+            //if (UserAccountManager.UserExists(newUser.username)) {
+            //    UserAccountManager.RegisterUser(newUser);
 
-            Window authParentWindow = Window.GetWindow(this); // Get the parent window to close
-            authParentWindow.Close();
+            //    string exitText = "Registration successful, please login with new credentials";
+            //    string caption = "Success!";
+            //    MessageBoxButton button = MessageBoxButton.OK;
+
+            //    // Alert to show success
+            //    if (MessageBox.Show(exitText, caption, button, MessageBoxImage.Question)
+            //        == MessageBoxResult.Yes) {
+            //        //Close();
+
+            //        var authWindow = new AuthorisationWindow();
+            //        authWindow.Show();
+
+            //        Window authParentWindow = Window.GetWindow(this); // Get the parent window to close
+            //        authParentWindow.Close();
+            //    }
+            //} else {
+            //    authentication.Visibility = Visibility.Visible;
+            //}
+
         }
     }
 }

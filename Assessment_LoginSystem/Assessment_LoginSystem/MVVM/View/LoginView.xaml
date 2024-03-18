@@ -13,6 +13,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height=".5*"/>
+            <RowDefinition Height=".5*"/>
             <RowDefinition Height="1.5*"/>
             <RowDefinition Height="1.5*"/>
             <RowDefinition Height=".5*"/>
@@ -28,7 +29,18 @@
             Margin="5,0"
             FontSize="18"/>
 
-        <StackPanel Grid.Row="1">
+        <TextBlock
+            Name="authentication"
+            Grid.Row="1"
+            Text="Invalid username or password!"
+            Foreground="Red"
+            FontSize="14"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            Visibility="Hidden"
+            />
+
+        <StackPanel Grid.Row="2">
             <Label
                 Content="Username"
                 Margin="5,0"
@@ -40,13 +52,13 @@
                 Padding="0,5"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="2">
+        <StackPanel Grid.Row="3">
             <Label
                 Content="Password"
                 Margin="5,0"
                 Foreground="White"
                 FontSize="14"/>
-            <TextBox 
+            <PasswordBox 
                 Name="password"
                 Margin="10,0"
                 Padding="0,5"/>
@@ -66,7 +78,7 @@
             Click="ToRegistration_Click"/>
         !-->
         <Button
-            Grid.Row="4"
+            Grid.Row="5"
             Margin="10"
             Content="Login"
             FontSize="14"

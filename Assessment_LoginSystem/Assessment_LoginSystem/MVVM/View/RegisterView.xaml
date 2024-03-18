@@ -10,6 +10,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height=".5*"/>
+            <RowDefinition Height=".5*"/>
             <RowDefinition Height="1.5*"/>
             <RowDefinition Height="1.5*"/>
             <RowDefinition Height=".5*"/>
@@ -23,8 +24,19 @@
             Foreground="White"
             Margin="5,0"
             FontSize="18"/>
+        
+        <TextBlock
+            Name="authentication"
+            Grid.Row="1"
+            Text="Username already exists!"
+            Foreground="Red"
+            FontSize="14"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            Visibility="Hidden"
+            />
 
-        <StackPanel Grid.Row="1">
+        <StackPanel Grid.Row="2">
             <Label
                 Content="Username"
                 Margin="5,0"
@@ -36,31 +48,41 @@
                 Padding="0,5"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="2">
+        <StackPanel Grid.Row="3">
             <Label
                 Content="Password"
                 Margin="5,0"
                 Foreground="White"
                 FontSize="14"/>
-            <TextBox 
+            <PasswordBox 
                 Name="registerPassword"
                 Margin="10,0"
                 Padding="0,5"/>
+            <TextBox 
+                Name="autoGeneratePasswordDisplay"
+                Text="AUTO GENERATE"
+                Margin="10,0"
+                Padding="0,5"
+                Background="DarkGray"
+                Visibility="Hidden"
+                IsEnabled="False"/>
+            
         </StackPanel>
 
         <CheckBox
             Name="GeneratePassword"
-            Grid.Row="3"
+            Grid.Row="4"
             Content="Auto generate password?"
             Foreground="LightBlue"
             HorizontalAlignment="Right"
             VerticalAlignment="Top"
             Margin="0,0,10,0"
             IsChecked="False"
-            Checked="GeneratePassword_Checked"/>
+            Checked="GeneratePassword_Checked"
+            Unchecked="GeneratePassword_Unchecked"/>
 
         <Button
-            Grid.Row="4"
+            Grid.Row="5"
             Margin="10"
             Content="Register"
             FontSize="14"
