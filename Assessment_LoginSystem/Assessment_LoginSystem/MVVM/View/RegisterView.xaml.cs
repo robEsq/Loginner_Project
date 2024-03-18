@@ -46,6 +46,52 @@ namespace Assessment_LoginSystem.MVVM.View {
 
             Debug.WriteLine(UserAccountManager.UserExists(un));
 
+            if (un == "" && pw == "") {
+                authentication.Visibility = Visibility.Visible;
+                authentication.Text = "Fill out username and password in the fields";
+
+                registerUsername.BorderBrush = Brushes.Red;
+                registerPassword.BorderBrush = Brushes.Red;
+            } else if (un == "") {
+                authentication.Visibility = Visibility.Visible;
+                authentication.Text = "Fill out username the field";
+                registerUsername.BorderBrush = Brushes.Red;
+            } else if (pw == "") {
+                authentication.Visibility = Visibility.Visible;
+                authentication.Text = "Fill out password in the field";
+                registerPassword.BorderBrush = Brushes.Red;
+            } else {
+                if (!UserAccountManager.UserExists(un)) {
+                    authentication.Visibility = Visibility.Hidden;
+                    User newUser = new User(un, pw);
+                    UserAccountManager.RegisterUser(newUser);
+
+                    string exitText = "Registration successful, please login with new credentials";
+                    string caption = "success!";
+                    MessageBoxButton button = MessageBoxButton.OK;
+                    if (MessageBox.Show(exitText, caption, button, MessageBoxImage.Question)
+                    == MessageBoxResult.Yes) {
+                        //Close();
+
+                        var authWindow = new AuthorisationWindow();
+                        authWindow.Show();
+
+                        Window authParentWindow = Window.GetWindow(this); // Get the parent window to close
+                        authParentWindow.Close();
+                    }
+
+                    var login = new AuthorisationWindow();
+                    login.Show();
+
+                    var myWindow = Window.GetWindow(this);
+                    myWindow.Close();
+
+                } else {
+                    authentication.Visibility = Visibility.Visible;
+                    authentication.Text = "User already exists!";
+                }
+            }
+
             //if (UserAccountManager.UserExists(newUser.username)) {
             //    UserAccountManager.RegisterUser(newUser);
 

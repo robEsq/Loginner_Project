@@ -28,7 +28,6 @@
         <TextBlock
             Name="authentication"
             Grid.Row="1"
-            Text="Username already exists!"
             Foreground="Red"
             FontSize="14"
             VerticalAlignment="Center"
