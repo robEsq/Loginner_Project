@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assessment_LoginSystem.MVVM.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Diagnostics;
 
 namespace Assessment_LoginSystem.MVVM.View {
     /// <summary>
@@ -39,11 +41,22 @@ namespace Assessment_LoginSystem.MVVM.View {
         //}
         private void LoginButton_Click(object sender, RoutedEventArgs e) {
             // Add login funtionality here
-            var mainWindow = new MainWindow();
-            mainWindow.Show();
+            UserAccountManager UAM = new UserAccountManager();
 
-            Window authParentWindow = Window.GetWindow(this); // Get the parent window to close
-            authParentWindow.Close();
+            if (UAM.Login(username.Text, password.Password) == true) {
+                var mainWindow = new MainWindow();
+                mainWindow.Show();
+
+                Window authParentWindow = Window.GetWindow(this); // Get the parent window to close
+                authParentWindow.Close();
+            } else {
+                authentication.Visibility = Visibility.Visible;
+            }
+            //UAM.Login(username.Text, password.Text);
+            //UserAccountManager.ReadFile("accounts.txt");
+
+
+            
         }
     }
 }

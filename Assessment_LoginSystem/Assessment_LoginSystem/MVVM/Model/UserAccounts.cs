@@ -1,6 +1,8 @@
 ﻿using System.Collections;
+using System.IO;
 
 namespace Assessment_LoginSystem.MVVM.Model {
+    // This class holds all the users and returns a list of them.
     class UserAccounts {
         private ArrayList userList = new ArrayList();
 
