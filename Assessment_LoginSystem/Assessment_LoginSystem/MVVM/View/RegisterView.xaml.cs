@@ -25,7 +25,6 @@ namespace Assessment_LoginSystem.MVVM.View {
         }
 
         private void GeneratePassword_Checked(object sender, RoutedEventArgs e) {
-            // auto generate logic. send to VM
             registerPassword.IsEnabled = false;
             registerPassword.Password = "";
             registerPassword.Visibility = Visibility.Collapsed;
@@ -40,80 +39,79 @@ namespace Assessment_LoginSystem.MVVM.View {
 
         private void Register_Click(object sender, RoutedEventArgs e) {
             string un = registerUsername.Text;
-            string pw = registerPassword.Password;
-            Debug.WriteLine(un);
-            Debug.WriteLine(pw);
+            string pw;
 
-            Debug.WriteLine(UserAccountManager.UserExists(un));
+            // If random password was checked
+            if (GeneratePassword.IsChecked == true) {
+                pw = UserAccountManager.GenerateRandomPassword();
+                User newUserRNG = new User(un, pw);
+                ValidateRegisterForm(newUserRNG);
+            } else {
+                pw = registerPassword.Password; 
+                User newUser = new User(un, pw);
+                ValidateRegisterForm(newUser);
+            }
+        }
 
-            if (un == "" && pw == "") {
+        private void CallRegisterUser(User user) {
+            UserAccountManager.RegisterUser(user);
+
+            string exitText = "Registration successful, please login with new credentials";
+            string caption = "Success!";
+            MessageBoxButton button = MessageBoxButton.OK;
+
+            if (GeneratePassword.IsChecked == true) {
+                exitText = 
+                    $"Registration successful, please login with new credentials\n" +
+                    $"Your generated password is : '{user.password}'\n" +
+                    $"Contact your systems admin if you forget.";
+            }
+
+            if (MessageBox.Show(exitText, caption, button, MessageBoxImage.Question)
+            == MessageBoxResult.Yes) {
+                //Close();
+
+                var authWindow = new AuthorisationWindow();
+                authWindow.Show();
+
+                Window authParentWindow = Window.GetWindow(this); // Get the parent window to close
+                authParentWindow.Close();
+            }
+
+            var login = new AuthorisationWindow();
+            login.Show();
+
+            var myWindow = Window.GetWindow(this);
+            myWindow.Close();
+        }
+
+        // GO BACK AND CLEAN THIS UP
+        private void ValidateRegisterForm(User user) {
+            if (user.username == "" && user.password == "") {
                 authentication.Visibility = Visibility.Visible;
                 authentication.Text = "Fill out username and password in the fields";
 
                 registerUsername.BorderBrush = Brushes.Red;
                 registerPassword.BorderBrush = Brushes.Red;
-            } else if (un == "") {
+            } else if (user.username == "") {
                 authentication.Visibility = Visibility.Visible;
                 authentication.Text = "Fill out username the field";
                 registerUsername.BorderBrush = Brushes.Red;
-            } else if (pw == "") {
+            } else if (user.password == "") {
                 authentication.Visibility = Visibility.Visible;
                 authentication.Text = "Fill out password in the field";
                 registerPassword.BorderBrush = Brushes.Red;
             } else {
-                if (!UserAccountManager.UserExists(un)) {
+                if (!UserAccountManager.UserExists(user.username)) {
                     authentication.Visibility = Visibility.Hidden;
-                    User newUser = new User(un, pw);
-                    UserAccountManager.RegisterUser(newUser);
-
-                    string exitText = "Registration successful, please login with new credentials";
-                    string caption = "success!";
-                    MessageBoxButton button = MessageBoxButton.OK;
-                    if (MessageBox.Show(exitText, caption, button, MessageBoxImage.Question)
-                    == MessageBoxResult.Yes) {
-                        //Close();
-
-                        var authWindow = new AuthorisationWindow();
-                        authWindow.Show();
-
-                        Window authParentWindow = Window.GetWindow(this); // Get the parent window to close
-                        authParentWindow.Close();
-                    }
-
-                    var login = new AuthorisationWindow();
-                    login.Show();
-
-                    var myWindow = Window.GetWindow(this);
-                    myWindow.Close();
-
+                    
+                    //User newUser = new User(user.username, user.password);
+                    CallRegisterUser(user);
                 } else {
                     authentication.Visibility = Visibility.Visible;
                     authentication.Text = "User already exists!";
                 }
             }
-
-            //if (UserAccountManager.UserExists(newUser.username)) {
-            //    UserAccountManager.RegisterUser(newUser);
-
-            //    string exitText = "Registration successful, please login with new credentials";
-            //    string caption = "Success!";
-            //    MessageBoxButton button = MessageBoxButton.OK;
-
-            //    // Alert to show success
-            //    if (MessageBox.Show(exitText, caption, button, MessageBoxImage.Question)
-            //        == MessageBoxResult.Yes) {
-            //        //Close();
-
-            //        var authWindow = new AuthorisationWindow();
-            //        authWindow.Show();
-
-            //        Window authParentWindow = Window.GetWindow(this); // Get the parent window to close
-            //        authParentWindow.Close();
-            //    }
-            //} else {
-            //    authentication.Visibility = Visibility.Visible;
-            //}
-
         }
     }
 }

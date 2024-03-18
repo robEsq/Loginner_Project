@@ -51,6 +51,19 @@ namespace Assessment_LoginSystem.MVVM.Model {
             }
         }
 
+        public static string GenerateRandomPassword() {
+            Random rnd = new Random();
+            char a;
+            string password = "";
+
+            for (int i = 0; i < 10; i++) {
+                a = (char)rnd.Next(33, 126);
+                password += a;
+            }
+
+            return password;
+        }
+
         public static ArrayList ReadFile(string filePath) {
             //UserAccounts userAccounts = new UserAccounts();
             userAccounts = new UserAccounts();

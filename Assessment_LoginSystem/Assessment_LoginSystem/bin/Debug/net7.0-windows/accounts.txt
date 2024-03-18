@@ -9,3 +9,6 @@ robotman,7777Spy007NewUser1,1234
 NewUser1,1234
 User1234NEW,123432
 HelloThere,obi
+UserNameJim,1234
+rndPassUser,Mp657sqCf{
+RandGuyAgain,=UA!3)25e$
