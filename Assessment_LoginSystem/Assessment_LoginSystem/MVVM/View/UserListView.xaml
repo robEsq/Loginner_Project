@@ -26,7 +26,8 @@
             Margin="10">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Username" Width="200"/>
+                    <GridViewColumn Header="Index" Width="50" DisplayMemberBinding="{Binding ID}"/>
+                    <GridViewColumn Header="Username" Width="200" DisplayMemberBinding="{Binding Username}"/>
                 </GridView>
             </ListView.View>
             

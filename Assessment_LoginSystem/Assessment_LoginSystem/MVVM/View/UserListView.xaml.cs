@@ -1,4 +1,5 @@
 ﻿using Assessment_LoginSystem.MVVM.Model;
+using System;
 using System.Collections;
 using System.Windows.Controls;
 namespace Assessment_LoginSystem.MVVM.View {
@@ -11,10 +12,18 @@ namespace Assessment_LoginSystem.MVVM.View {
             //Upon clicking the tab the page will
             //  run this command to fetch the data from the text file
             ArrayList UAL = UserAccountManager.ReadFile("Accounts.txt");
-
-            foreach (User account in UAL) { 
-                userListEntries.Items.Add(account.username);
+            int index = 1;
+            foreach (User account in UAL) {
+                userListEntries.Items.Add(new userEntry() {
+                    ID = index++,
+                    Username = account.username
+                }); ;
             }
+        }
+
+        public class userEntry {
+            public int ID { get; set; }
+            public string? Username { get; set; }
         }
     }
 }
