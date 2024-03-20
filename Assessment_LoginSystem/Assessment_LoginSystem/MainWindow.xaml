@@ -54,23 +54,29 @@
                 FontSize="14"
                 Style="{StaticResource MenuButtonTheme}"
                 Command="{Binding UserListCommand}"/>
+        </StackPanel>
+        
+        <StackPanel 
+            Grid.Column="0" Grid.Row="1"
+            Margin="10,0,10,10"
+            VerticalAlignment="Bottom">
 
-            <RadioButton 
+            <Button 
                 Content="Logout"
+                Margin="0,0,0,10"
                 Height="50"
                 Foreground="White"
+                Background="DimGray"
                 FontSize="14"
-                Style="{StaticResource MenuButtonTheme}"
                 Name="LogoutButton"
                 Click="LogoutButton_Click"/>
 
-            <RadioButton 
+            <Button
                 Content="Exit"
                 Height="50"
                 Foreground="White"
                 FontSize="14"
                 Background="Red"
-                Style="{StaticResource MenuButtonTheme}"
                 Name="CloseButton"
                 Click="CloseButton_Click"/>
         </StackPanel>

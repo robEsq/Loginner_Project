@@ -9,7 +9,7 @@ namespace Assessment_LoginSystem {
             InitializeComponent();
         }
         private void CloseButton_Click(object sender, RoutedEventArgs e) {
-            string exitText = "Are you sure you want to quit?";
+            string exitText = "Are you sure you want to exit?";
             string caption = "Exit";
             MessageBoxButton button = MessageBoxButton.YesNo;
 

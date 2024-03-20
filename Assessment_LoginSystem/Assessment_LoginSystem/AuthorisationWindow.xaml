@@ -7,7 +7,7 @@
         xmlns:viewModel="clr-namespace:Assessment_LoginSystem.MVVM.ViewModel"
         mc:Ignorable="d"
         Background="#272537"
-        Title="Login" Height="400" Width="300"
+        Title="Login" Height="500" Width="300"
         x:Name="_this">
     <Window.DataContext>
         <viewModel:AuthorisationViewModel/>

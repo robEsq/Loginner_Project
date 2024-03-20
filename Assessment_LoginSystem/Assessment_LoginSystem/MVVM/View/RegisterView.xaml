@@ -23,7 +23,7 @@
             Text="Register"
             Foreground="White"
             Margin="5,0"
-            FontSize="18"/>
+            FontSize="16"/>
         
         <TextBlock
             Name="authentication"

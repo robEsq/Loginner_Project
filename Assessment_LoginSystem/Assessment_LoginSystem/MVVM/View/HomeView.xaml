@@ -20,7 +20,7 @@
             Foreground="White"
             FontSize="32"
             Margin="0,10,10,10"/>
-        
+
         <TextBlock
             Grid.Row="1"
             Text="Welcome to Loginner TM!"
@@ -30,9 +30,19 @@
         
         <TextBlock
             Grid.Row="2"
+            VerticalAlignment="Top"
             Text="Choose what you want to do on the navigation bar to the left."
             Foreground="White"
             FontSize="18"
             Margin="60,10,10,10"/>
+        
+        <TextBlock
+            Grid.Row="2"
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="Right"
+            Text="WPF app by Robert Esquillon 20.02.24"
+            FontSize="12"
+            Margin="10" Foreground="#0CFFFFFF"/>
+
     </Grid>
 </UserControl>
