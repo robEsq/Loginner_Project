@@ -1,11 +1,6 @@
-﻿using Assessment_LoginSystem.MVVM.View;
-using System;
+﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Assessment_LoginSystem.MVVM.Model {
     class UserAccountManager {

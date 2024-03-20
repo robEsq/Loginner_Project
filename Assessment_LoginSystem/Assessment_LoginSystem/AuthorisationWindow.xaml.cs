@@ -1,17 +1,4 @@
-﻿using Assessment_LoginSystem.MVVM.View;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 
 namespace Assessment_LoginSystem {
     /// <summary>
@@ -22,7 +9,7 @@ namespace Assessment_LoginSystem {
             InitializeComponent();
         }
         private void CloseButton_Click(object sender, RoutedEventArgs e) {
-            string exitText = "Are you sure you want to quit?";
+            string exitText = "Are you sure you want to exit?";
             string caption = "Exit";
             MessageBoxButton button = MessageBoxButton.YesNo;
 
