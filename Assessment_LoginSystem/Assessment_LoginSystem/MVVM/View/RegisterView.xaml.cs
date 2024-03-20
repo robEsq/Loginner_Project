@@ -57,7 +57,6 @@ namespace Assessment_LoginSystem.MVVM.View {
 
             if (MessageBox.Show(exitText, caption, button, MessageBoxImage.Question)
             == MessageBoxResult.Yes) {
-                //Close();
 
                 var authWindow = new AuthorisationWindow();
                 authWindow.Show();
@@ -73,7 +72,6 @@ namespace Assessment_LoginSystem.MVVM.View {
             myWindow.Close();
         }
 
-        // GO BACK AND CLEAN THIS UP
         private void ValidateRegisterForm(User user) {
             if (user.username == "" && user.password == "") {
                 authentication.Visibility = Visibility.Visible;
@@ -85,6 +83,10 @@ namespace Assessment_LoginSystem.MVVM.View {
                 authentication.Visibility = Visibility.Visible;
                 authentication.Text = "Fill out username the field";
                 registerUsername.BorderBrush = Brushes.Red;
+            } else if (user.password.Length < 10) {
+                authentication.Visibility = Visibility.Visible;
+                authentication.Text = "Password must be more than 10 chaacters!";
+                registerPassword.BorderBrush = Brushes.Red;
             } else if (user.password == "") {
                 authentication.Visibility = Visibility.Visible;
                 authentication.Text = "Fill out password in the field";
@@ -93,7 +95,6 @@ namespace Assessment_LoginSystem.MVVM.View {
                 if (!UserAccountManager.UserExists(user.username)) {
                     authentication.Visibility = Visibility.Hidden;
                     
-                    //User newUser = new User(user.username, user.password);
                     CallRegisterUser(user);
                 } else {
                     authentication.Visibility = Visibility.Visible;
